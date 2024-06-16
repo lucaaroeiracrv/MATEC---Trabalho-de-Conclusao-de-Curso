@@ -1,8 +1,20 @@
-<?php // Início do bloco PHP
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Recebe a entrada do usuário em JSON
+    $data = json_decode(file_get_contents('php://input'), true);
+    $pergunta = $data['question'];
 
-// O código PHP pode estar vazio aqui, uma vez que este arquivo não executa nenhum código PHP diretamente
+    // Salva a pergunta em um arquivo temporário para leitura pelo Node.js
+    file_put_contents('input.txt', $pergunta);
 
-?> <!-- Fim do bloco PHP -->
+    // Executa o código Node.js e captura a saída
+    $response = shell_exec('node chatbot.js');
+
+    // Retorna a resposta como JSON
+    echo json_encode(['answer' => $response]);
+    exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -44,7 +56,7 @@
 
             // Envia a pergunta para o backend usando AJAX
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'chatBot.js', true); // Requisição POST para o arquivo chatBot.js
+            xhr.open('POST', 'chatbot.php', true); // Requisição POST para o arquivo chatbot.php
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) { // Verifica se a requisição foi concluída com sucesso
