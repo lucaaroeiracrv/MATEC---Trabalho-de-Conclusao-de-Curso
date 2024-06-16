@@ -1,18 +1,26 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Recebe a entrada do usuário em JSON
     $data = json_decode(file_get_contents('php://input'), true);
-    $pergunta = $data['question'];
 
-    // Salva a pergunta em um arquivo temporário para leitura pelo Node.js
-    file_put_contents('input.txt', $pergunta);
+    if (isset($data['question'])) {
+        $question = $data['question'];
 
-    // Executa o código Node.js e captura a saída
-    $response = shell_exec('node chatbot.js');
+        // Salva a pergunta em um arquivo temporário
+        file_put_contents('question.txt', $question);
 
-    // Retorna a resposta como JSON
-    echo json_encode(['answer' => $response]);
-    exit;
+        // Executa o script Node.js e captura a saída
+        $output = shell_exec('node chatbot.js');
+
+        // Lê a resposta do arquivo temporário
+        $answer = file_get_contents('answer.txt');
+
+        // Retorna a resposta como JSON
+        echo json_encode(['answer' => $answer]);
+    } else {
+        echo json_encode(['error' => 'Pergunta não fornecida']);
+    }
+} else {
+    echo json_encode(['error' => 'Método de requisição inválido']);
 }
 ?>
 
