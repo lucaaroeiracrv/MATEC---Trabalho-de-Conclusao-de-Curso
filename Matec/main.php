@@ -34,7 +34,7 @@ session_start();
         <div class="container">
             <div class="bloco">
                 <h2>Teste nosso Chatbot</h2>
-                <a href="chatbot.php" class="btn">Iniciar Teste</a>
+                <a href="chatBot/chatbot.php" class="btn">Iniciar Teste</a>
             </div>
             <div class="bloco">
                 <h2>Contatos de Plano</h2>

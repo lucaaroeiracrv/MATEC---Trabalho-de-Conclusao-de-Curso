@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <nav>
             <div class="logo">MATEC</div>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/Matec/main.php">Home</a></li>
                 <li><a href="about.html">Sobre</a></li>
                 <li><a href="services.html">Serviços</a></li>
                 <li><a href="contact.html">Contato</a></li>
