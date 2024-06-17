@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form method="POST">
                 <div class="mb-3 espacamento">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email">
+                    <input type="email" class="form-control" id="email" name="email" required>
                 </div>
                 <div class="mb-3 espacamento">
                     <label for="numero_celular" class="form-label">Nº de Celular</label>
@@ -53,11 +53,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="mb-3 espacamento">
                     <label for="usuario" class="form-label">Usuário</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario">
+                    <input type="text" class="form-control" id="usuario" name="usuario" required>
                 </div>
                 <div class="mb-3 espacamento">
                     <label for="senha" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="senha" name="senha" aria-describedby="passwordHelpBlock">
+                    <input type="password" class="form-control" id="senha" name="senha" aria-describedby="passwordHelpBlock" required>
                     <div id="passwordHelpBlock" class="form-text">
                         A senha deverá conter 5-20 caracteres e possuir letras e números sem espaços
                     </div>
